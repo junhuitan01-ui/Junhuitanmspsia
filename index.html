@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Differential Research Programme | School of Applied Science, Temasek Polytechnic</title>
+<meta name="description" content="The Differential Research Programme (DRP) gives Temasek Polytechnic Applied Science students access to authentic, internationally published research in the Materials Science Laboratory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          tpred: '#D71920',
+          tpredDark: '#B0141A',
+          charcoal: '#333333',
+          sciblue: '#005A9C',
+          success: '#3FAE49',
+          lightgrey: '#F5F5F5',
+        },
+        fontFamily: { sans: ['Poppins','sans-serif'] },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family:'Poppins',sans-serif; color:#333333; }
+
+  /* Institutional look: quiet motion, thin red rules, editorial spacing */
+  .fade-up { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+  .fade-up.in-view { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { opacity:1 !important; transform:none !important; transition:none !important; }
+    html { scroll-behavior:auto; }
+  }
+
+  .rule { height: 3px; width: 56px; background: #D71920; }
+  .eyebrow { color:#D71920; font-weight:600; font-size:13px; letter-spacing:.04em; text-transform:uppercase; }
+
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 3px solid #005A9C; outline-offset: 2px;
+  }
+
+  .placeholder-figure {
+    background: repeating-linear-gradient(135deg, #ececec, #ececec 10px, #e2e2e2 10px, #e2e2e2 20px);
+    border: 1px solid #dcdcdc;
+  }
+
+  .stat-bar-track { background:#e9e9e9; height:10px; border-radius:6px; overflow:hidden; }
+  .stat-bar-fill { height:100%; border-radius:6px; width:0; transition:width 1.1s ease; }
+
+  table.tp-table { border-collapse: collapse; width: 100%; }
+  table.tp-table th, table.tp-table td { border: 1px solid #e2e2e2; padding: 12px 14px; text-align:left; font-size: 14px; vertical-align: top; }
+  table.tp-table th { background:#F5F5F5; font-weight:600; color:#333333; }
+  table.tp-table tr:nth-child(even) td { background: #fafafa; }
+
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .accordion-item[data-open="true"] .accordion-content { max-height: 400px; }
+  .accordion-item[data-open="true"] .chevron { transform: rotate(180deg); }
+  .chevron { transition: transform .25s ease; }
+
+  .nav-solid { background: rgba(255,255,255,0.97); box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+</style>
+</head>
+<body class="bg-white antialiased">
+
+<!-- ============ NAV ============ -->
+<header id="site-nav" class="fixed top-0 inset-x-0 z-50 bg-white border-b border-black/5">
+  <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between py-3" aria-label="Primary">
+    <a href="https://www.tp.edu.sg/home.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3">
+      <img src="https://assets.codepen.io/17965093/Screenshot%202026-07-18%20193945.png" alt="Temasek Polytechnic logo" class="w-10 h-10 rounded shrink-0 object-cover">
+      <div class="leading-tight">
+        <div class="font-bold text-charcoal text-sm tracking-tight">Temasek Polytechnic</div>
+        <div class="text-[11px] tracking-wide uppercase text-tpred font-semibold">School of Applied Science</div>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-charcoal/80">
+      <a href="#about" class="hover:text-tpred transition-colors">DRP For Chemical Engineering</a>
+      <a href="#insights" class="hover:text-tpred transition-colors">Survey Insights</a>
+      <a href="#research" class="hover:text-tpred transition-colors">Research</a>
+      <a href="#lab" class="hover:text-tpred transition-colors">Materials Lab</a>
+      <a href="#publications" class="hover:text-tpred transition-colors">Publications</a>
+      <a href="#faq" class="hover:text-tpred transition-colors">FAQ</a>
+      <a href="#contact" class="hover:text-tpred transition-colors">Contact</a>
+    </div>
+    <a href="#about" class="bg-tpred hover:bg-tpredDark transition-colors text-white px-5 py-2 rounded text-sm font-semibold shrink-0">Explore DRP</a>
+  </nav>
+ <!-- breadcrumb, TP style -->
+  <div class="bg-lightgrey border-t border-black/5 text-[12px] text-charcoal/60 px-6 py-2 hidden md:block">
+    <div class="max-w-6xl mx-auto">
+      Creating Tomorrow &nbsp;/&nbsp; Schools &amp; Courses &nbsp;/&nbsp; School of Applied Science &nbsp;/&nbsp; <span class="text-charcoal font-medium">Differential Research Programme</span>
+    </div>
+  </div>
+  <!-- jump-to-section dropdown -->
+  <div class="bg-white border-t border-black/10 px-6 py-2.5">
+    <div class="max-w-6xl mx-auto">
+      <select
+        class="text-sm font-medium text-charcoal border border-black/15 rounded px-4 py-2 bg-white w-full sm:w-64 focus-visible:outline-2 focus-visible:outline-sciblue"
+        onchange="if(this.value){ document.querySelector(this.value).scrollIntoView({behavior:'smooth'}); this.selectedIndex = 0; }"
+      >
+        <option value="">Jump to Section</option>
+        <option value="#top">Overview</option>
+        <option value="#insights">Is DRP Right For You</option>
+        <option value="#research">Research</option>
+        <option value="#spotlight">Student Spotlight</option>
+        <option value="#publications">Publications</option>
+        <option value="#faq">FAQ</option>
+        <option value="#contact">Contact</option>
+      </select>
+    </div>
+  </div>
+</header>
+<!-- ============ HERO ============ -->
+<section id="top" class="pt-40 md:pt-44 pb-14 border-b border-black/5">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-5 gap-10 items-center">
+    <div class="lg:col-span-3 fade-up">
+      <div class="eyebrow mb-3">School of Applied Science</div>
+      <h1 class="font-bold text-charcoal text-3xl sm:text-4xl leading-tight mb-5">Differential Research Programme (DRP) with Centre for Urban Sustainability (CUS)</h1>
+      <div class="rule mb-5"></div>
+      <p class="text-charcoal/75 leading-relaxed max-w-xl">
+        The Centre for Urban Sustainability's Differential Research Programme allows selected students to participate in lecturer supervised research exploring how cement and concrete can be engineered to conduct and store electricity. By incorporating innovative materials such as recycled carbon, graphene, carbon nanotubes, and biochar, students investigate how future buildings and infrastructure could serve as large scale energy storage systems.
+      </p>
+      <div class="flex flex-wrap gap-3 mt-7">
+        <a href="#about" class="bg-tpred hover:bg-tpredDark transition-colors text-white px-6 py-3 rounded text-sm font-semibold">Explore DRP</a>
+      </div>
+    </div>
+    <div class="lg:col-span-2 fade-up">
+  <img
+    src="https://assets.codepen.io/17965093/ChatGPT%20Image%20Jul%2018%2C%202026%2C%2009_37_55%20PM.png" alt="On-site evaluation of innovative road materials" class="aspect-[4/3] w-full object-cover rounded border border-black/10">
+  <p class="text-xs text-charcoal/50 mt-2">Concrete testing in the Materials Science Laboratory provides valuable insights into the performance of sustainable construction materials developed through applied research.</p>
+</div>
+  </div>
+</section>
+
+<!-- ============ STATS STRIP ============ -->
+<section class="bg-lightgrey py-10 border-b border-black/5" aria-label="Centre for Urban Sustainability statistics">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+    <div class="fade-up">
+      <div class="counter font-bold font-mono tabular-nums text-tpred text-3xl" data-target="2">0</div>
+      <div class="text-[12px] text-charcoal/60 mt-1 uppercase tracking-wide">Research Areas</div>
+    </div>
+    <div class="fade-up">
+      <div class="counter font-bold font-mono tabular-nums text-tpred text-3xl" data-target="3">0</div>
+      <div class="text-[12px] text-charcoal/60 mt-1 uppercase tracking-wide">CUS Laboratories</div>
+    </div>
+    <div class="fade-up">
+      <div class="counter font-bold font-mono tabular-nums text-tpred text-3xl" data-target="4">0</div>
+      <div class="text-[12px] text-charcoal/60 mt-1 uppercase tracking-wide">Government &amp; Industry Partners</div>
+    </div>
+    <div class="fade-up">
+      <div class="counter font-bold font-mono tabular-nums text-tpred text-3xl" data-target="4">0</div>
+      <div class="text-[12px] text-charcoal/60 mt-1 uppercase tracking-wide">Int'l Conference Papers</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT DRP ============ -->
+<section id="about" class="pt-14 md:pt-32 pb-14 border-b border-black/5" style="scroll-margin-top: 160px;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-up eyebrow mb-2">DRP For Chemical Engineering</div>
+    <h2 class="fade-up font-bold text-charcoal text-2xl sm:text-3xl mb-2">Build the Battery of the Future with Concrete</h2>
+    <div class="rule mb-5" style="height: 5px; width: 80px;"></div>
+    <div class="fade-up text-charcoal/75 leading-relaxed text-[15px] max-w-3xl">
+      <p>Cement and concrete can be made to conduct and store electricity like a battery when mixed with additives like recycled carbon, graphene, carbon nanotubes, or biochar. Although they may not store as much power as a conventional battery, the fact that there is so much cement used in urban environments makes it worth considering it as energy storage to save overall space, weight and cost. In this project, students will have the opportunity to explore making cement "batteries" and learn how batteries are tested.</p>
+    </div>
+  </div>
+</section>
+<!-- ============ WHY DRP: INTERACTIVE CARDS ============ -->
+<section id="insights" class="py-16 border-b border-black/5" style="scroll-margin-top: 160px;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-up eyebrow mb-2">Is This DRP Right For You?</div>
+    <h2 class="fade-up font-bold text-charcoal text-2xl sm:text-3xl mb-2">Tap a statement that sounds like you</h2>
+    <div class="rule mb-8"></div>
+    <div class="fade-up grid sm:grid-cols-3 gap-6">
+      <button type="button" class="text-left bg-lightgrey border border-black/10 rounded-lg p-6 hover:border-tpred hover:shadow-md transition-all" onclick="this.querySelector('.drp-answer').classList.toggle('hidden')">
+        <div class="font-semibold text-charcoal text-lg mb-3">I enjoy solving problems</div>
+        <div class="drp-answer hidden text-sm text-charcoal/75 leading-relaxed border-t border-black/10 pt-3 mt-1">
+          <span class="text-tpred font-bold mr-1">&#10003;</span>You'll investigate real sustainability challenges.
+        </div>
+      </button>
+      <button type="button" class="text-left bg-lightgrey border border-black/10 rounded-lg p-6 hover:border-tpred hover:shadow-md transition-all" onclick="this.querySelector('.drp-answer').classList.toggle('hidden')">
+        <div class="font-semibold text-charcoal text-lg mb-3">I like laboratory work</div>
+        <div class="drp-answer hidden text-sm text-charcoal/75 leading-relaxed border-t border-black/10 pt-3 mt-1">
+          <span class="text-tpred font-bold mr-1">&#10003;</span>You'll gain practical research experience.
+        </div>
+      </button>
+      <button type="button" class="text-left bg-lightgrey border border-black/10 rounded-lg p-6 hover:border-tpred hover:shadow-md transition-all" onclick="this.querySelector('.drp-answer').classList.toggle('hidden')">
+        <div class="font-semibold text-charcoal text-lg mb-3">I'm considering university</div>
+        <div class="drp-answer hidden text-sm text-charcoal/75 leading-relaxed border-t border-black/10 pt-3 mt-1">
+          <span class="text-tpred font-bold mr-1">&#10003;</span>Build a strong research portfolio.
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH SHOWCASE ============ -->
+<section id="research" class="py-16 border-b border-black/5" style="scroll-margin-top: 150px;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-up eyebrow mb-2">Research Showcase</div>
+    <h2 class="fade-up font-bold text-charcoal text-2xl sm:text-3xl mb-2">Advanced Materials for the Built Environment</h2>
+    <div class="rule mb-6"></div>
+
+    <div class="fade-up grid lg:grid-cols-5 gap-8 items-start">
+      <div class="lg:col-span-2">
+         <img
+    src="https://assets.codepen.io/17965093/image.png" class="aspect-[4/3] w-full object-cover rounded border border-black/10">
+  <p class="text-xs text-charcoal/50 mt-2">Dr Wong Sook Fun (second from right), and Mr Kevin Lee
+(second from left) </p>
+        <p class="text-xs text-charcoal/50 mt-2">Laboratory evaluation of recycled mixed-plastic materials for construction use.</p>
+      </div>
+      <div class="lg:col-span-3 text-charcoal/75 leading-relaxed text-[15px] space-y-4">
+        <p class="mb-4">Plastic waste remains one of today's greatest environmental challenges, particularly when different plastics are mixed or contaminated and difficult to recycle. Researchers at the Centre for Urban Sustainability (CUS) are developing innovative ways to transform these materials into high-value construction products.</p>
+        <p> Supported by the National Environment Agency (NEA), CUS has developed a process that uses Near-Infrared (NIR) technology to identify and sort mixed plastics before incorporating them into asphalt pavements and concrete. This research reduces landfill waste, supports the circular economy, and improves the performance of sustainable construction materials. </p>
+         <p> Working alongside industry partner Samwoh Corporation, students and researchers are evaluating these materials through real-world road pavement and concrete footpath trials, helping shape the future of greener and more sustainable urban infrastructure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PUBLICATIONS ============ -->
+  <section id="publications" class="py-16 border-b border-black/5" style="scroll-margin-top: 150px;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-up eyebrow mb-2">Published Research</div>
+    <h2 class="fade-up font-bold text-charcoal text-2xl sm:text-3xl mb-2">Conference Papers</h2>
+    <div class="rule mb-6"></div>
+    <p class="fade-up text-charcoal/70 leading-relaxed max-w-3xl mb-8 text-[15px]">
+      Findings from the Materials Science Laboratory's research into recycled mixed-plastic construction materials
+      have been presented at international conferences across four countries.
+    </p>
+
+    <div class="fade-up overflow-x-auto">
+      <table class="tp-table">
+        <thead>
+          <tr>
+            <th class="w-12">No.</th>
+            <th>Citation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Lee, K. J., &amp; Wong, S. F. (2023). Recycled Mixed Plastic Fine Aggregate in Cement Concrete. <em>Proceedings of the 17th International Congress on Polymers in Concrete</em>, Warsaw, Poland.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Wong, S. F., Lee, K. J., Lee, K. Y. P., Ho, N. Y., &amp; Moe, A. L. (2023). Asphalt Testing for Mixed Plastics Road Pavements. <em>Proceedings of the International Conference on Advancing Sustainable Futures</em>, Dubai, UAE.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Wong, S. F., Lee, K. J., Lee, K. Y. P., Win Maung, A. N., &amp; Ho, N. Y. (2023). Binder Testing of Mixed Plastics-Polymer Modified Bitumen for Asphaltic Wearing Course. <em>Proceedings of the International Conference on Solid Waste Hong Kong 2023: Waste Management in Circular Economy and Climate Resilience</em> (pp. 602–605).</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Lee, K. J., Wong, S. F., Lee, K. Y. P., Ho, N. Y., &amp; Moe, A. L. (2023). Environmental Assessment of Asphaltic Wearing Course Containing Mixed Plastic Waste in Singapore. <em>Proceedings of the 77th RILEM Annual Week &amp; 1st Interdisciplinary Symposium on Smart &amp; Sustainable Infrastructures</em>, Vancouver, Canada.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STUDENT SPOTLIGHT ============ -->
+<section id="spotlight" class="py-20 bg-lightgrey/60 border-b border-black/5" style="scroll-margin-top: 150px;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-up font-bold text-charcoal text-3xl sm:text-4xl mb-2">Student Spotlight</div>
+    <div class="rule mb-10"></div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+      <!-- LEFT: Portrait card -->
+      <div class="fade-up">
+        <div class="bg-white rounded-2xl shadow-sm border border-black/5 p-4 hover:shadow-lg transition-shadow duration-300">
+          <div class="relative">
+            <img src="https://assets.codepen.io/17965093/ChatGPT%20Image%20Jul%2019%2C%202026%2C%2004_20_21%20AM.png" alt="Student Name" class="w-full max-w-xs mx-auto aspect-[4/5] object-cover rounded-xl">
+            <span class="absolute top-3 left-3 bg-tpred text-white text-[11px] font-semibold uppercase tracking-wide px-3 py-1 rounded-full shadow-sm">DRP Participant</span>
+          </div>
+          <div class="pt-5 pb-2 px-1">
+            <div class="font-bold text-charcoal text-lg">Tan Junhui</div>
+            <div class="text-charcoal/60 text-sm mt-0.5">Diploma in Chemical Engineering · Year 3</div>
+            <div class="text-tpred text-sm font-medium mt-2">Research Project: Cement as Energy Storage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Content -->
+      <div class="fade-up">
+        <h2 class="font-bold text-charcoal text-2xl sm:text-3xl mb-5 leading-tight">DRP Experience</h2>
+
+        <blockquote class="italic text-charcoal/80 text-xl leading-relaxed border-l-2 border-tpred pl-5 mb-10">
+          "The DRP gave me valuable insight into the potential of cement as an energy storage material. It also deepened my understanding of how changes in mortar composition influence the properties and performance of cement during the curing process."
+        </blockquote>
+
+        <div class="grid sm:grid-cols-3 gap-5 mb-10">
+          <!-- Research Experience -->
+          <div class="bg-white rounded-xl border border-black/5 p-5 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+            <svg class="w-6 h-6 text-tpred mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 3h6M10 3v5.5L4.5 18a1.8 1.8 0 0 0 1.5 2.8h12a1.8 1.8 0 0 0 1.5-2.8L14 8.5V3" />
+            </svg>
+            <div class="font-semibold text-charcoal text-sm mb-2">Research Experience</div>
+            <ul class="text-charcoal/70 text-[13px] leading-relaxed space-y-1 list-disc list-inside">
+              <li>Ran controlled lab experiments</li>
+              <li>Worked directly with lecturer-mentors</li>
+            </ul>
+          </div>
+          <!-- Skills Developed -->
+          <div class="bg-white rounded-xl border border-black/5 p-5 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+            <svg class="w-6 h-6 text-tpred mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3Z" />
+            </svg>
+            <div class="font-semibold text-charcoal text-sm mb-2">Skills Developed</div>
+            <ul class="text-charcoal/70 text-[13px] leading-relaxed space-y-1 list-disc list-inside">
+              <li>Data analysis &amp; critical thinking</li>
+              <li>Technical writing &amp; presenting</li>
+            </ul>
+          </div>
+          <!-- Advice for Future Students -->
+          <div class="bg-white rounded-xl border border-black/5 p-5 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+            <svg class="w-6 h-6 text-tpred mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2 8.5 8.5 2 12l6.5 3.5L12 22l3.5-6.5L22 12l-6.5-3.5L12 2Z" />
+            </svg>
+            <div class="font-semibold text-charcoal text-sm mb-2">Advice for Future Students</div>
+            <ul class="text-charcoal/70 text-[13px] leading-relaxed space-y-1 list-disc list-inside">
+              <li>Stay curious and ask questions</li>
+              <li>Treat setbacks as part of the process</li>
+            </ul>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+  <section id="faq" class="py-16 border-b border-black/5" style="scroll-margin-top: 150px;">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="fade-up eyebrow mb-2">FAQ</div>
+    <h2 class="fade-up font-bold text-charcoal text-2xl sm:text-3xl mb-2">Common questions about DRP</h2>
+    <div class="rule mb-6"></div>
+
+    <div class="fade-up space-y-3" id="faq-list">
+      <div class="accordion-item border border-black/10 rounded overflow-hidden" data-open="false">
+        <button class="accordion-trigger w-full flex items-center justify-between text-left px-5 py-4 font-semibold text-charcoal text-sm" aria-expanded="false">
+          Who is eligible to apply for DRP?
+          <span class="chevron text-tpred">▾</span>
+        </button>
+        <div class="accordion-content px-5 text-sm text-charcoal/70 leading-relaxed">
+          <p class="pb-4">Any current Temasek Polytechnic School of Applied Science student in good academic standing can apply. Priority is given to students with a genuine interest in materials science or sustainable engineering.</p>
+        </div>
+      </div>
+      <div class="accordion-item border border-black/10 rounded overflow-hidden" data-open="false">
+        <button class="accordion-trigger w-full flex items-center justify-between text-left px-5 py-4 font-semibold text-charcoal text-sm" aria-expanded="false">
+          How much time does the programme require?
+          <span class="chevron text-tpred">▾</span>
+        </button>
+        <div class="accordion-content px-5 text-sm text-charcoal/70 leading-relaxed">
+          <p class="pb-4">Workload is structured around your existing timetable and scoped with your research lecturer. In our survey, 75% of participants said they wished this had been explained more clearly before joining — so we recommend discussing expected hours directly with your research lecturer at the outset.</p>
+        </div>
+      </div>
+      <div class="accordion-item border border-black/10 rounded overflow-hidden" data-open="false">
+        <button class="accordion-trigger w-full flex items-center justify-between text-left px-5 py-4 font-semibold text-charcoal text-sm" aria-expanded="false">
+          What kind of research topics can I work on?
+          <span class="chevron text-tpred">▾</span>
+        </button>
+        <div class="accordion-content px-5 text-sm text-charcoal/70 leading-relaxed">
+          <p class="pb-4">Current focus areas include sustainable construction materials, recycled-plastic aggregates, asphalt and binder testing, and concrete 3D printing — with new topics opening each intake.</p>
+        </div>
+      </div>
+      <div class="accordion-item border border-black/10 rounded overflow-hidden" data-open="false">
+        <button class="accordion-trigger w-full flex items-center justify-between text-left px-5 py-4 font-semibold text-charcoal text-sm" aria-expanded="false">
+          Do I need prior laboratory experience?
+          <span class="chevron text-tpred">▾</span>
+        </button>
+        <div class="accordion-content px-5 text-sm text-charcoal/70 leading-relaxed">
+          <p class="pb-4">No. All laboratory skills, from equipment handling to testing protocols, are taught as part of the programme under lecturer supervision.</p>
+        </div>
+      </div>
+      <div class="accordion-item border border-black/10 rounded overflow-hidden" data-open="false">
+        <button class="accordion-trigger w-full flex items-center justify-between text-left px-5 py-4 font-semibold text-charcoal text-sm" aria-expanded="false">
+          How do I apply?
+          <span class="chevron text-tpred">▾</span>
+        </button>
+        <div class="accordion-content px-5 text-sm text-charcoal/70 leading-relaxed">
+          <p class="pb-4">Reach out to the School of Applied Science via the contact details below, or speak with your lecturer during term to express your interest in DRP.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+  <section id="contact" class="py-16 bg-tpred" style="scroll-margin-top: 150px;">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="fade-up font-bold text-white text-2xl sm:text-3xl mb-4">Ready to research beyond the classroom?</h2>
+    <p class="fade-up text-white/90 max-w-xl mx-auto mb-8 text-[15px] leading-relaxed">
+      Discover the Differential Research Programme and take your first step into authentic, internationally
+      recognised applied research.
+    </p>
+    <div class="fade-up flex flex-wrap justify-center gap-4">
+<a href="https://www.tp.edu.sg/research-and-industry/centres-of-excellence/centres-under-school-of-applied-science/centre-for-urban-sustainability.html" target="_blank" rel="noopener noreferrer" class="bg-white text-tpred hover:bg-lightgrey transition-colors px-7 py-3 rounded text-sm font-semibold">More About CUS</a>
+      <a href="#contact-footer" class="border border-white text-white hover:bg-white/10 transition-colors px-7 py-3 rounded text-sm font-semibold">Contact ASC</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact-footer" class="bg-charcoal text-white/70 pt-14 pb-8">
+  <div class="max-w-6xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10 text-sm">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <img src="https://assets.codepen.io/17965093/Screenshot%202026-07-18%20193945.png" alt="Temasek Polytechnic logo" class="w-9 h-9 rounded object-cover">
+        <div class="text-white font-bold leading-tight">Temasek<br>Polytechnic</div>
+      </div>
+      <p class="leading-relaxed">School of Applied Science<br>Differential Research Programme</p>
+    </div>
+    <div>
+      <h5 class="text-white font-semibold mb-4 text-xs uppercase tracking-wide">Quick Links</h5>
+      <ul class="space-y-2">
+        <li><a href="#about" class="hover:text-white transition-colors">About DRP</a></li>
+        <li><a href="#research" class="hover:text-white transition-colors">Research</a></li>
+        <li><a href="#lab" class="hover:text-white transition-colors">Materials Science Lab</a></li>
+        <li><a href="#publications" class="hover:text-white transition-colors">Publications</a></li>
+        <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="text-white font-semibold mb-4 text-xs uppercase tracking-wide">Contact</h5>
+      <ul class="space-y-2">
+        <li>21 Tampines Ave 1, Singapore 529757</li>
+        <li>asc@tp.edu.sg</li>
+        <li>+65 6788 1000</li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="text-white font-semibold mb-4 text-xs uppercase tracking-wide">Follow ASC</h5>
+      <div class="flex gap-3">
+        <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-tpred hover:border-tpred transition-colors text-xs">f</a>
+        <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-tpred hover:border-tpred transition-colors text-xs">ig</a>
+        <a href="#" aria-label="LinkedIn" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-tpred hover:border-tpred transition-colors text-xs">in</a>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 border-t border-white/10 pt-6 text-xs text-white/40 leading-relaxed">
+    © 2026 Temasek Polytechnic, School of Applied Science. All research information presented is based on publicly available educational content and is intended for illustrative purposes.
+  </div>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Animated counters (resets and replays every time it scrolls in/out of view)
+  const counters = document.querySelectorAll('.counter');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const el = entry.target;
+      if (entry.isIntersecting) {
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 600;
+        const start = performance.now();
+        const tick = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          el.textContent = Math.round(progress * target);
+          if (progress < 1 && el.dataset.animating === 'true') requestAnimationFrame(tick);
+        };
+        el.dataset.animating = 'true';
+        requestAnimationFrame(tick);
+      } else {
+        el.dataset.animating = 'false';
+        el.textContent = '0';
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // Animated stat bars
+  const bars = document.querySelectorAll('.stat-bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.style.width = el.dataset.width + '%';
+        barObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+  bars.forEach(b => barObserver.observe(b));
+
+  // Accordion
+  document.querySelectorAll('.accordion-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.accordion-item');
+      const isOpen = item.getAttribute('data-open') === 'true';
+      document.querySelectorAll('.accordion-item').forEach(i => { i.setAttribute('data-open','false'); i.querySelector('.accordion-trigger').setAttribute('aria-expanded','false'); });
+      if (!isOpen) { item.setAttribute('data-open','true'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+</script>
